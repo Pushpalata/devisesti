@@ -1,0 +1,10 @@
+.container
+  - if user_signed_in?
+    %h2 
+      Welcome
+      = current_user.class.to_s.titlecase
+    %span
+      = current_user.email
+  - else
+    %h2
+      STI with Devise

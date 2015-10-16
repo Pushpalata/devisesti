@@ -1,0 +1,29 @@
+!!!5
+%html
+  %head
+    %title Airfree
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    #header.airbnb-header.new
+      #new-header.regular-header.regular-header--new.clearfix.hide-sm
+        .comp.pull-left
+          %a.hdr-btn.link-reset.belo-container{:href => "/"}
+            %i.icon.icon-pos--lower.icon-rausch.icon-airbnb.show-logout
+              Air Free
+        - if user_signed_in?
+          .comp.pull-right.show-logout
+            = link_to "Log Out", destroy_user_session_path, :method =>:delete, :class => "hdr-btn link-reset"
+        - else
+          .comp.pull-right.show-logout
+            = link_to "Log In", new_user_session_path, :class => "hdr-btn link-reset"
+          .comp.pull-right.show-logout
+            = link_to "Sign Up", "javascript:void(0)", :class => "hdr-btn link-reset"
+            .drop-down-menu
+              .notifications-tooltip.panel
+                = link_to "Guest Sign Up", new_guest_registration_path, :class => "panel-header"
+                = link_to "Host Sign Up", new_host_registration_path, :class => "panel-header"
+                = link_to "Admin Sign Up", new_admin_registration_path, :class => "panel-header"
+    .main-container
+      = yield
